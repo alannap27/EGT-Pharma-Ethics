@@ -1,0 +1,23 @@
+[project]
+name = "chaos"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Thomas Zdyrski" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "lyapynov>=1.0.1",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
+    "plotly>=7.0.0",
+    "scipy>=1.18.1",
+]
+
+[project.scripts]
+chaos = "chaos:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
