@@ -4,7 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Thomas Zdyrski" }
+    {   name = "Alanna Polyak"
+        name = "Thomas Zdyrski" }
 ]
 requires-python = ">=3.14"
 dependencies = [
