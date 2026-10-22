@@ -1,3 +1,4 @@
+# %% [markdown]
 # # Evolutionary stability of ethics in pharma: analysis notebook
 #
 # This notebook makes every figure in the paper. The model itself (fit, fixed points,
@@ -17,6 +18,7 @@
 #
 # (each raw series is min-max scaled to [0, 1] over 2010-2024 first)
 
+# %%
 import sys, types, warnings
 from pathlib import Path
 
