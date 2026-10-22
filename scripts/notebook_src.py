@@ -177,7 +177,7 @@ save(fig1, "fig1.png")
 # %%
 rng = np.random.default_rng(42)
 fig2 = plt.figure(figsize=(TEXTW, 4.1))
-gs2 = gridspec.GridSpec(1, 3, figure=fig2, width_ratios=[1, 1.3, 0.05], wspace=0.12)
+gs2 = gridspec.GridSpec(1, 4, figure=fig2, width_ratios=[1, 1.3, 0.1, 0.05], wspace=0.12)
 ax = fig2.add_subplot(gs2[0, 0])
 Yg, Xg = np.mgrid[0.01:0.99:24j, 0.01:0.99:24j]
 U = np.zeros_like(Xg); V = np.zeros_like(Yg)
@@ -201,7 +201,7 @@ for x0, y0, z0 in rng.uniform(0.05, 0.95, size=(60, 3)):   # 60 random starts
 ax.scatter(*Ez, c="gold", s=110, marker="*", edgecolor="k", depthshade=False)
 ax.set_title("2.2  Trajectories sinking onto $z$ = 0"); ax.set_xlabel("$x$", labelpad=-2); ax.set_ylabel("$y$", labelpad=-2); ax.set_zlabel("$z$", labelpad=-2)
 ax.tick_params(labelsize=7.5, pad=0); ax.view_init(elev=22, azim=-55); ax.set_box_aspect(None, zoom=1.05)
-cax = fig2.add_subplot(gs2[0, 2])
+cax = fig2.add_subplot(gs2[0, 3])
 fig2.colorbar(plt.cm.ScalarMappable(cmap=cmap2), cax=cax, label="starting compliance $x_0$")
 save(fig2, "fig2.png")
 
@@ -637,9 +637,9 @@ print(f"x(700) [{Xterm.min():.3f}, {Xterm.max():.3f}]; mean x [{Xmean.min():.3f}
       f"max z(700) {Zterm.max():.2e}; share with z(700) > 0.05: {np.mean(Zterm > 0.05):.3f}")
 # %%
 # Figure 10: orbits vs. level sets of H, and the two face centers as k changes
-fig10 = plt.figure(figsize=(TEXTW, 6.6))
-gs10 = gridspec.GridSpec(2, 2, figure=fig10, wspace=0.35, hspace=0.55)
-a = fig10.add_subplot(gs10[0, 0])
+fig10 = plt.figure(figsize=(TEXTW, 7.6))
+gs10 = gridspec.GridSpec(2, 6, figure=fig10, wspace=1.7, hspace=0.45, height_ratios=[1.35, 1])
+a = fig10.add_subplot(gs10[0, 0:4])
 xg, yg = np.meshgrid(np.linspace(0.005, 0.995, 300), np.linspace(0.005, 0.995, 300))
 a.contour(xg, yg, egt.conserved_H_z0(xg, yg, p, K0), levels=30, colors="0.75", linewidths=0.6)
 for x0v, colv in zip([0.5, 0.65, 0.8, 0.86], ["C0", "C1", "C2", "C3"]):   # from a big loop down to a small one near E_z
@@ -655,13 +655,13 @@ for kv in ks:
     omz.append(np.max(np.abs(np.linalg.eigvals(egt.jacobian(ez, p, kv)).imag)) if 0 < ez[1] < 1 else np.nan)
     omy.append(np.max(np.abs(np.linalg.eigvals(egt.jacobian(ey, p, kv)).imag)) if 0 < ey[2] < 1 else np.nan)
     yz.append(ez[1]); zy.append(ey[2])
-a = fig10.add_subplot(gs10[0, 1])
+a = fig10.add_subplot(gs10[1, 0:3])
 a.plot(ks, omz, color="#1b7837", label="$E_z$ (on face $z$=0)"); a.plot(ks, omy, color="#762a83", label="$E_y$ (on face $y$=1)")
 for kv, ls, lab in [(KS, "--", "$k^*$"), (KSS, "-.", "$k^{**}$")]:
     a.axvline(kv, color="k", ls=ls, lw=0.9, label=lab)
 a.set_title("10.2  Rotation rate of each face center"); a.set_xlabel("friction $k$"); a.set_ylabel("$\\omega = |\\mathrm{Im}\\,\\lambda|$")
 a.legend(fontsize=7, loc="lower left")
-a = fig10.add_subplot(gs10[1, 0])
+a = fig10.add_subplot(gs10[1, 3:6])
 yz_, zy_ = np.array(yz, float), np.array(zy, float)
 a.axhspan(0, 1, color="0.9", zorder=0, label="inside the cube")
 a.plot(ks, np.where((yz_ > -0.5) & (yz_ < 1.5), yz_, np.nan), color="#1b7837", label="$y$ of $E_z$")
@@ -670,7 +670,7 @@ for kv, ls in [(KS, "--"), (KSS, "-.")]:
     a.axvline(kv, color="k", ls=ls, lw=0.9)
 a.set_ylim(-0.5, 1.5); a.set_title("10.3  Where each face center sits"); a.set_xlabel("friction $k$"); a.set_ylabel("coordinate")
 a.legend(fontsize=7, loc="upper left")
-aK = fig10.add_subplot(gs10[1, 1]); aK.axis("off")
+aK = fig10.add_subplot(gs10[0, 4:6]); aK.axis("off")
 aK.legend(h10, l10, loc="center", fontsize=8.5, title="key for 10.1")
 save(fig10, "fig_stability.png")
 s = egt.simulate((0.65, 0.2, 0.0), np.linspace(0, 1000, 5001), k=K0)
@@ -865,8 +865,9 @@ for drop in fr.firm:
     for z in order: loo[z].append(m[z])
 print("leave-one-out median ranges (%):", {z: (round(min(v), 1), round(max(v), 1)) for z, v in loo.items()})
 # %% [markdown]
-# ## 13. Dashboard (Appendix D)
-# Needs ipywidgets. Without it, the three example settings shown in the paper are drawn instead.
+# ## 13. Dashboard examples (Appendix D)
+# The three example settings of Figure 19. The interactive version (sliders) is in
+# `interactive_dashboard.ipynb`.
 
 # %%
 def run_dashboard(k_bureaucracy=KBAR, S_pol=p["S_pol"], gamma=p["gamma"], ax=None, t_end=100, panel=""):
@@ -882,16 +883,6 @@ def run_dashboard(k_bureaucracy=KBAR, S_pol=p["S_pol"], gamma=p["gamma"], ax=Non
     ax.set_xlabel("time $t$"); ax.set_ylabel("population share"); ax.set_ylim(-0.03, 1.03)
     if own: ax.legend(); plt.show()
     return xe
-
-try:
-    from ipywidgets import interact, FloatSlider, Layout
-    # slider ranges cover all three outcomes
-    interact(lambda k, S, g: run_dashboard(k, S, g),
-             k=FloatSlider(value=KBAR, min=0.0, max=1.5, step=0.05, description="friction k", layout=Layout(width="600px")),
-             S=FloatSlider(value=p["S_pol"], min=0.0, max=2.0, step=0.05, description="subsidy S", layout=Layout(width="600px")),
-             g=FloatSlider(value=p["gamma"], min=0.0, max=2.0, step=0.05, description="public penalty", layout=Layout(width="600px")))
-except ImportError:
-    print("no ipywidgets here, drawing the three examples instead")
 
 figD, axsD = plt.subplots(1, 3, figsize=(TEXTW, 3.3), sharey=True, constrained_layout=True)
 for n_, (a, (kv, sv, gv)) in enumerate(zip(axsD, [(1.50, 2.00, 0.20), (0.80, 0.32, 0.10), (1.00, 0.50, 0.90)])):
