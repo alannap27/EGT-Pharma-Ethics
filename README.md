@@ -22,7 +22,7 @@ figures/                     generated figures (PNG, 300 dpi)
 scripts/
   notebook_src.py            plain-Python source of the notebook
   build_notebook.py          builds and runs the notebook; copies figures into paper/figures
-chaos/                       Lyapunov-exponent and trajectory scripts (T. Zdyrski)
+chaos/                       Lyapunov-exponent and trajectory scripts
 paper/
   main.tex, references.bib   manuscript (biblatex + biber)
   figures/                   figures used by the LaTeX files
