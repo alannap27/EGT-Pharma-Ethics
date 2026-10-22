@@ -14,6 +14,7 @@ regenerates every figure in the paper.
 egt_core.py                  model, calibration, fixed points, thresholds, conserved quantity,
                              Lyapunov exponents
 egt_pharma_analysis.ipynb    makes every figure (executed copy, outputs included)
+interactive_dashboard.ipynb  interactive version of the dashboard (Appendix D)
 data/
   pharma_indices.csv         composite x, y, z, k indices (biennial, 2010-2024)
   firm_classification.csv    15 firms: zone, R&D intensity, penalties, 2019 revenue, sources
@@ -40,7 +41,11 @@ python scripts/build_notebook.py scripts/notebook_src.py egt_pharma_analysis.ipy
 
 The notebook also runs on its own (for example in Google Colab): it contains a copy of 
 `egt_core.py` and of both data files and uses them when the repository files are not present. 
-Without `ipywidgets` the dashboard cell draws its three example settings instead of the interactive version.
+After running the python command above, the `figures/` and `paper/figures/` directories will be populated with
+the generated images, and `egt_pharma_analysis.ipynb` will be updated with the images. The interactive dashboard
+of Appendix D is in a separate notebook, `interactive_dashboard.ipynb`, which needs `ipywidgets` (included in
+`requirements.txt`). An interactive instance of the `interactive_dashboard.ipynb` notebook is available on mybinder at
+https://mybinder.org/v2/gh/OWNER/EGT_Pharma_New/HEAD?labpath=interactive_dashboard.ipynb.
 
 ## Building the paper
 
@@ -50,14 +55,14 @@ Upload the contents of `paper/` to Overleaf.
 
 | quantity | value |
 |---|---|
-| x_z* = 1 - C_r/B_r (x-coordinate of the z = 0 center) | 0.900 |
-| x_y* = 1 - C_p/B_p (x-coordinate of the y = 1 center) | 0.887 |
-| dV/dt = x_z* - x_y*, with V = ln[y/(1-y)]/B_r - ln[z/(1-z)]/B_p | 0.0133 |
-| decay rate of z near z = 0, B_p(x_y* - x_z*) | -0.0119 |
-| k* = (S_pol + alpha - C_base)^(1/3) | 0.754 |
-| k** = (S_pol + alpha + gamma - C_base)^(1/3), collapse threshold | 0.809 |
-| period of small orbits at k = 0.60 / of the Fig. 1 orbit | 80.3 / 104.6 |
-| Lyapunov exponents at k = 0.60, T = 6000 | (0.0007, -0.0017, -0.0126) |
+| $`x_z^* = 1 - C_r/B_r`$ (x-coordinate of the $`z = 0`$ center) | 0.900 |
+| $`x_y^* = 1 - C_p/B_p`$ (x-coordinate of the $`y = 1`$ center) | 0.887 |
+| $`dV/dt = x_z^* - x_y^*`$, with $`V = \ln[y/(1-y)]/B_r - \ln[z/(1-z)]/B_p`$ | 0.0133 |
+| decay rate of $`z`$ near $`z = 0`$, $`B_p(x_y^* - x_z^*)`$ | -0.0119 |
+| $`k^* = (S_{pol} + \alpha - C_{base})^{1/3}`$ | 0.754 |
+| $`k^{**} = (S_{pol} + \alpha + \gamma - C_{base})^{1/3}`$, collapse threshold | 0.809 |
+| period of small orbits at $`k = 0.60`$ / of the Fig. 1 orbit | 80.3 / 104.6 |
+| Lyapunov exponents at $`k = 0.60`$, $`T = 6000`$ | (0.0007, -0.0017, -0.0126) |
 
 ## Figures
 
