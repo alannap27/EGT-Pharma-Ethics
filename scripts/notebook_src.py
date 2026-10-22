@@ -88,7 +88,7 @@ def save(fig, name, tight=True):
 # ## 1. Data and fit
 # Eight payoff constants, fitted with L-BFGS-B to the biennial indices. The friction series
 # k(t) is fed in as data (linear interpolation between observation years). Four of the
-# eight constants end up on a bound; that is reported in the paper's Table 2.
+# eight constants end up on a bound; that is reported in the paper's Table 3.
 
 # %%
 df_emp = egt.load_indices()
