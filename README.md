@@ -45,7 +45,7 @@ After running the python command above, the `figures/` and `paper/figures/` dire
 the generated images, and `egt_pharma_analysis.ipynb` will be updated with the images. The interactive dashboard
 of Appendix D is in a separate notebook, `interactive_dashboard.ipynb`, which needs `ipywidgets` (included in
 `requirements.txt`). An interactive instance of the `interactive_dashboard.ipynb` notebook is available on mybinder at
-https://mybinder.org/v2/gh/OWNER/EGT_Pharma_New/HEAD?labpath=interactive_dashboard.ipynb.
+URL.
 
 ## Building the paper
 
