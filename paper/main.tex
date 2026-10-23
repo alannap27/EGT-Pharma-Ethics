@@ -23,6 +23,7 @@
 \usepackage[backend=biber, style=numeric-comp, sorting=none, maxbibnames=10, giveninits=true]{biblatex}
 \addbibresource{references.bib}
 \usepackage[hidelinks]{hyperref}
+\usepackage{orcidlink} 
 \usepackage{cleveref}
 \usepackage[title]{appendix}
 
@@ -51,14 +52,21 @@
 
 \title{\textbf{Cutting Corners or Saving Lives? \\ The Evolutionary Stability of Ethics in Pharma Medicine}}
 
-\author[1]{Alanna Polyak}
-\author[1]{Thomas Zdyrski \thanks{Corresponding Author. Email: Thomas.Zdyrski@dartmouth.edu}}
+\author[1]{Alanna Polyak\,\orcidlink{0009-0001-2373-3659}}
+\author[1]{Thomas Zdyrski\,\orcidlink{0000-0003-3039-172X} \thanks{Corresponding Author. Email: Thomas.Zdyrski@dartmouth.edu}}
 \affil[1]{Department of Mathematics, Dartmouth College, Hanover, NH 03755, United States of America}
 
 \maketitle
 
 \begin{abstract}
 The pharmaceutical industry operates at the intersection of financial incentives, state oversight, and public scrutiny. We model corporate compliance with a three-population replicator system of ethical firms, active regulators, and active public scrutiny, whose payoffs are motivated by a prisoner's dilemma of first-mover advantage, an inspection game between firms and the FDA, and a volunteer's dilemma in early-stage research. The eight payoff constants are fitted by bounded L-BFGS-B optimization to composite indices for 2010--2024, and a fully sourced dataset of fifteen heavily penalized firms links the model's strategy types to R\&D intensity and penalties. The calibrated system has no interior fixed point: an exact identity shows that public scrutiny decays at a rate set by the difference between the regulators' and the public's cost-to-benefit ratios. Without public scrutiny the firm--regulator dynamics are conformally Hamiltonian, so the two populations cycle neutrally around a center, and Lyapunov exponents give no evidence of chaos. Bureaucratic friction $k$, which enters compliance costs as $k^3$, organizes two thresholds: above $k^*\approx0.75$ regulators saturate and compliance rests on public scrutiny, and above $k^{**}\approx0.81$ compliance collapses. The empirical friction index crosses both between 2016 and 2020, as the compliance index falls from $0.85$ to $0.60$. Relative to revenue, penalties are highest for the firms with the lowest R\&D intensity. Ethical compliance is therefore an oscillating rather than a permanent state, persisting only while friction stays below the combined incentive of subsidies, fines, and public penalties.
+
+Keywords:
+evolutionary game theory,
+nonlinear dynamics,
+regulator compliance,
+spatial games,
+stochastic forcing
 \end{abstract}
 
 \section{Introduction}
@@ -485,15 +493,19 @@ By treating the U.S.\ pharmaceutical industry as three interacting populations g
 To make these trade-offs explorable rather than merely asserted, we also built an interactive dashboard over the calibrated system, in which bureaucratic friction $k$, the state subsidy $S_{pol}$, and the public penalty $\gamma$ can be varied while the population trajectories are recomputed in real time. It is documented in Appendix~\ref{app:dashboard}; we found it useful for locating the collapse threshold by hand before confirming it analytically.
 
 \section*{Author Contributions}
-Contributions follow the CRediT taxonomy. \textbf{Alanna Polyak:} Conceptualization; Methodology; Software; Formal analysis; Data curation; Visualization; Writing -- original draft; Writing -- review \& editing. \textbf{Thomas Zdyrski:} % feel free to add this since you helped do all of the math required for this section Formal analysis (fixed-point classification, conserved quantity, and Lyapunov analysis); 
-Writing -- review \& editing; Supervision; Project administration.
+Contributions follow the CRediT taxonomy. \textbf{Alanna Polyak:} Conceptualization; Methodology; Software; Formal analysis; Data curation; Visualization; Writing -- original draft; Writing -- review \& editing. \textbf{Thomas Zdyrski:} Writing -- review \& editing; Supervision; Project administration.
 
 \section*{Acknowledgements}
 We would like to acknowledge Denny Bao, Brooke Hollawell, Annika Jiwani, and Ekam Singh for their contributions during the conceptualization, data gathering, and first draft phases of the project. We also like to thank Thomas Kornfeld for his contributions to reviewing aspects of the formal analysis phase of this project.
 
 \section*{Data and Code Availability}
-The code repository is available at \url{https://doi.org/10.5281/zenodo.XXXXX}. % To-do publish github to zenodo
-It is organized with a top-level \texttt{README}; the model module \texttt{egt\_core.py}, which implements the calibration and every analytic quantity used in the paper; the notebook \texttt{egt\_pharma\_analysis.ipynb} which regenerates every figure and also runs stand-alone; and the data folder with the composite indices and the firm-level dataset of Appendix~\ref{app:firms}, including the source document and access date for every penalty and revenue figure. % To do: insert links
+The code repository is available on GitHub at \url{https://github.com/alannap27/EGT-Pharma-Ethics}
+and Zenodo at \url{https://doi.org/10.5281/zenodo.23605540}.
+It is organized with a top-level \texttt{README}; the model module \texttt{egt\_core.py}, which implements the calibration and every analytic quantity used in the paper; the notebook \texttt{egt\_pharma\_analysis.ipynb} which regenerates every figure and also runs stand-alone; and the data folder with the composite indices and the firm-level dataset of Appendix~\ref{app:firms}, including the source document and access date for every penalty and revenue figure.
+The interactive notebook is also available on \href{https://mybinder.org/v2/gh/alannap27/EGT-Pharma-Ethics/HEAD?urlpath=%2Fdoc%2Ftree%2Finteractive_dashboard.ipynb}{MyBinder}.
+
+\section*{Declaration of Interests}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 \section*{Disclosure of AI Use}
 Generative AI tools were used to assist with editing portions of the code and manuscript text as well as with comment formatting in the code; AI was not used to solely generate any of the mathematical findings or to wholly produce any figure. All models, analyses, results, and conclusions were reviewed and verified by the authors.
@@ -719,7 +731,8 @@ a known property of the replicator dynamics of $2\times2$ bimatrix games \cite{h
 \paragraph{Other faces:} On the face $y=1$, the same derivation with $(a_0,a_y,b_0,b_x)\to(a_0+a_y,a_z,c_0,c_x)$ gives the conserved quantity $\mathcal{H}_y(x,z)=x^{c_0}(1-z)^{a_0+a_y+a_z}/\big[(1-x)^{c_0+c_x}z^{a_0+a_y}\big]$ and shows that $E_y$ is a true center whenever it lies in the face. The faces $y=0$ and $z=1$ follow analogously; under the fitted constants their fixed points lie on the degenerate edge $y=0$, $z=1$.
 
 \section{Interactive Replicator Dynamics Dashboard}\label{app:dashboard}
-To allow parameter stress-testing, the GitHub repository includes a \texttt{interactive\_dashboard.ipynb} notebook with an interactive dashboard built with the \texttt{ipywidgets} framework. It exposes three sliders, for bureaucratic friction $k$, the FDA subsidy $S_{pol}$, and the public penalty $\gamma$, holds the remaining constants at their fitted values, and recomputes the trajectory from $(0.2,0.2,0.2)$ over $0\le t\le100$ whenever a slider moves. When \texttt{ipywidgets} is unavailable, the \texttt{egt\_pharma\_analysis.ipynb} notebook renders the three example settings of \cref{fig:dashboard} statically.
+To allow parameter stress-testing, the \href{https://github.com/alannap27/EGT-Pharma-Ethics}{GitHub repository} includes a \texttt{interactive\_dashboard.ipynb} notebook with an interactive dashboard built with the \texttt{ipywidgets} framework. It exposes three sliders, for bureaucratic friction $k$, the FDA subsidy $S_{pol}$, and the public penalty $\gamma$, holds the remaining constants at their fitted values, and recomputes the trajectory from $(0.2,0.2,0.2)$ over $0\le t\le100$ whenever a slider moves. When \texttt{ipywidgets} is unavailable, the \texttt{egt\_pharma\_analysis.ipynb} and \texttt{interactive\_dashboard.ipynb} notebooks render the three example settings of \cref{fig:dashboard} statically.
+An interactive version is hosted on \href{https://mybinder.org/v2/gh/alannap27/EGT-Pharma-Ethics/HEAD?urlpath=%2Fdoc%2Ftree%2Finteractive_dashboard.ipynb}{MyBinder} for easier inspection.
 
 \begin{figure}[H]
     \centering
