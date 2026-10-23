@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alannap27/EGT-Pharma-Ethics/HEAD?urlpath=%2Fdoc%2Ftree%2Finteractive_dashboard.ipynb)
+
 # Evolutionary Stability of Ethics in Pharma
 
 Code and data for "Cutting Corners or Saving Lives? The Evolutionary Stability of Ethics in
@@ -45,7 +47,7 @@ After running the python command above, the `figures/` and `paper/figures/` dire
 the generated images, and `egt_pharma_analysis.ipynb` will be updated with the images. The interactive dashboard
 of Appendix D is in a separate notebook, `interactive_dashboard.ipynb`, which needs `ipywidgets` (included in
 `requirements.txt`). An interactive instance of the `interactive_dashboard.ipynb` notebook is available on mybinder at
-URL.
+[URL](https://mybinder.org/v2/gh/alannap27/EGT-Pharma-Ethics/HEAD?urlpath=%2Fdoc%2Ftree%2Finteractive_dashboard.ipynb).
 
 ## Building the paper
 
