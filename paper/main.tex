@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 
+\usepackage[utf8]{inputenc}
 \usepackage[top=.55in, bottom=.55in, left=0.55in, right=0.55in, headheight=13pt, footskip=0.4in]{geometry}
 \usepackage{mathpazo}
 \usepackage[T1]{fontenc}
@@ -10,6 +11,8 @@
 \usepackage{blkarray}  
 \usepackage{mathtools} 
 \usepackage{booktabs}
+\usepackage{newunicodechar}
+\newunicodechar{ȩ}{\c{e}}
 \usepackage{float}
 \usepackage{caption}
 \usepackage{xcolor}
@@ -64,13 +67,21 @@ The pharmaceutical industry operates at the intersection of financial incentives
 Keywords:
 evolutionary game theory,
 nonlinear dynamics,
-regulator compliance,
+regulatory compliance,
+pharmaceutical investment,
 spatial games,
 stochastic forcing
 \end{abstract}
 
 \section{Introduction}
-Evolutionary game theory (EGT) provides a mathematical framework for strategic interactions between boundedly rational agents over extended periods. Originally formulated by John Maynard Smith to model competition in biological populations \cite{smith1982}, EGT has since been applied widely to socio-economic behavior in oligopolistic markets \cite{weibull1995}. Formally, EGT replaces the perfect rationality of classical game theory with replicator dynamics, in which the growth rate of a strategy is proportional to its fitness advantage over the population average \cite{taylor1978}; the three canonical games invoked below (the prisoner's dilemma, the inspection game, and the volunteer's dilemma in \cref{sec:games}) each motivate one term of the fitness functions of \cref{sec:model}. Closely related three-population replicator models have recently been applied to pharmaceutical regulation itself, most notably Feng et al.'s evolutionary game of regulators, drug manufacturers, and patients in the context of accessible drug packaging in China \cite{feng2024}, which we return to in the Discussion. Nonlinear-dynamics treatments of neighboring problems include evolutionary games of trust under government management \cite{liu2023trust} and duopoly games with environmental, social, and governance (ESG) penalties \cite{esg2026}, and dynamic models of R\&D competition with knowledge spillovers \cite{chu2022rd}, of R\&D investment timing as a real-option game \cite{chang2016rd}, and of drug-R\&D project valuation under technical and economic uncertainty \cite{zhao2023drug}. In the pharmaceutical industry, establishing a sustainable culture of ethics is complicated by these interlocking games.
+Evolutionary game theory (EGT) provides a mathematical framework for strategic interactions between boundedly rational agents over extended periods. Originally formulated by John Maynard Smith to model competition in biological populations \cite{smith1982}, EGT has since been applied widely to socio-economic behavior in oligopolistic markets \cite{weibull1995}. Formally, EGT replaces the perfect rationality of classical game theory with replicator dynamics, in which the growth rate of a strategy is proportional to its fitness advantage over the population average \cite{taylor1978}; the three canonical games invoked below (the prisoner's dilemma, the inspection game, and the volunteer's dilemma in \cref{sec:games}) each motivate one term of the fitness functions of \cref{sec:model}. Closely related three-population replicator models have recently been applied to pharmaceutical regulation itself, most notably Feng et al.'s evolutionary game of regulators, drug manufacturers, and patients in the context of accessible drug packaging in China \cite{feng2024}, which we return to in the Discussion.
+Evolutionary game treatments of neighboring problems include
+reputation-based compliance mechanisms \cite{tavoni2012survival}
+and divisions of labor on networks \cite{nirjhor2026evolution},
+delayed interactions within replicator dynamics \cite{fic2025compartment},
+and
+public goods games that incorporate anti-corruption strategies \cite{fang2020singaporean}.
+In the pharmaceutical industry, establishing a sustainable culture of ethics is complicated by these interlocking games.
 
 The modern pharmaceutical sector operates under a persistent tension: companies are legally bound by fiduciary duty to maximize shareholder returns, yet they are simultaneously tasked with developing life-saving public health interventions. Bringing a single novel drug to market costs an estimated \$1.4 billion in out-of-pocket spending, or about \$2.6 billion once the cost of capital is included (2013 dollars) \cite{dimasi2016}, and development takes roughly a decade \cite{cbo2021}. These large upfront costs create an environment in which the temptation to bypass rigorous safety standards, accelerate trial phases, or inflate prices is strong. Our central research question asks: \textit{Why do pharmaceutical companies repeatedly make unethical decisions (e.g., price gouging, off-label marketing, data concealment) even if it damages them in the long run? Can regulatory pressure and public monitoring shift the system toward ethical behavior?}
 
