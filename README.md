@@ -1,6 +1,6 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/alannap27/EGT-Pharma-Ethics/HEAD?urlpath=%2Fdoc%2Ftree%2Finteractive_dashboard.ipynb)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23605707.svg)](https://doi.org/10.5281/zenodo.23605707)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23605706.svg)](https://doi.org/10.5281/zenodo.23605707)
 
 # Evolutionary Stability of Ethics in Pharma
 
